@@ -1,2 +1,2 @@
 # Calculo
-Practicas de wx-maxima
+Practicas de **wx-maxima
