@@ -1,2 +1,2 @@
 # Calculo
-Practicas de **Bold**wx-maxima
+Practicas de **wm-maxima**
