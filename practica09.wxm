@@ -1,0 +1,349 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: section start ]
+Ejercicio 9.1
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load(interpol);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=sqrt(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+p1:[81,f(81)];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+p2:[100,f(100)];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+p3:[121,f(121)];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(p(x),expand(lagrange([p1,p2,p3])));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color=red,
+    key="Función sqrt(x)",
+    explicit(f(x),x,-20,200),
+    color=blue,
+    key="Polinomio de Lagrange",
+    explicit(p(x),x,-20,200));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    points([[102,f(102)]]),
+    color=red,
+    key="Función sqrt(x)",
+    explicit(f(x),x,100,104),
+    color=blue,
+    key="Polinomio de Lagrange",
+    explicit(p(x),x,100,104));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+RESULTADO:p(102)-f(102),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 9.2
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Actividad 9.2: Utiliza los valores de la función raíz cuadrada en n = 2; 3; : : : ; 10 puntos, elegidos
+por tí, para calcular el polinomio de interpolación y aproximar el valor en 102. Haz una animación
+que represente la función raíz cuadrada y el polinomio de interpolación de Lagrange en función
+de su grado.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Primero hacemos una lista con 9 nodos:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load(interpol)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=sqrt(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+nodos:[[1,f(1)],[180,f(180)],[20,f(20)],[160,f(160)],[40,f(40)],[140,f(140)],[60,f(60)],[120,f(120)],[80,f(80)],[102,f(102)]];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Creamos una función para que se forme una lista con los primeros n puntos de la lista anterior 'nodos'.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Nodos(n):=
+    block(
+        [lista:[]],
+        for i:1 thru n do(
+            lista:append(lista,[nodos[i]])
+        ),
+        lista
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Nodos(1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Nodos(2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Nodos(6);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Y ahora hacemos la animación:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+with_slider_draw(
+    n,makelist(i,i,2,10),
+    color=dark-green, key="Nodos",
+    point_type=filled_circle,
+    points(Nodos(n)),
+    point_type=plus, key="102, f(102)",
+    points([[102,f(102)]]),
+    color=red, key="Funcion raíz",
+    explicit(f(x),x,0,300),
+    
+    color=blue, key="Polinomio de lagrange",
+    explicit(lagrange(Nodos(n)),x,0,200),
+    xrange=[-1,300], yrange=[-1,f(200)]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 9.3
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load(interpol);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Creo 5 puntos de esta forma [n, suma de los primeros n naturales], con n de 1 a 5:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+p1:[1,1^3];
+p2:[2,p1[2]+2^3];
+p3:[3,p2[2]+3^3];
+p4:[4,p3[2]+4^3];
+p5:[5,p4[2]+5^3];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(p(x),expand(lagrange([p1,p2,p3,p4,p5])));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Voy a crear una función para calcular la suma de los primeros n naturales:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+suma(n):=block(
+    [suma],
+    suma:0,
+    for i:1 thru n do(
+        suma:suma+i^3
+    ),
+    suma);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ahora la uso para comprobar si el polinomio calculado es correcto:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(suma(5)=p(5));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(suma(500)=p(500));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(suma(99999)=p(99999));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 9.4
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(taylor(f(x)^2,x,a,100)=taylor(f(x),x,a,100)^2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 9.5
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=cos(x)+%e^x;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Creo el polinomio de taylor con la función trunc
+para poder usarlo como cualquier otro polinomio:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(p(x),trunc(taylor(f(x),x,0,5)));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Calculo la primera derivada y los valores de x para
+los que se anula:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(dp(x),diff(p(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+realonly:true;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+soluciones:algsys([dp(x)=0],[x]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+solucion1:map(rhs,(soluciones[1]))[1];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+solucion2:map(rhs,(soluciones[2]))[1];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Evalúo la segunda derivada en esos valores para ver
+si son extremos relativos y, en su caso, si son
+máximos o mínimos:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(ddp(x),diff(p(x),x,2));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ddp(solucion1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+minimo:ddp(solucion1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ddp(solucion2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+maximo:ddp(solucion2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Por lo tanto, los extremos relativos de este polinomio son:
+    Minimo en x = -2.915408211420481
+    Máximo en x = -5.813822284908322
+Veamos la gráfica con los extremos relativos dibujados:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color=dark_green,
+    line_width=1,
+    explicit(p(x),x,-10,10),
+    point_type=filled_circle,
+    color=red,
+    points([[solucion1,p(solucion1)],[solucion2,p(solucion2)]]),
+    xrange=[(solucion2)-1,(solucion1)+1],yrange=[p(solucion1)-1,p(solucion2)+1]);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

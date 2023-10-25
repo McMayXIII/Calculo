@@ -1,0 +1,75 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: title   start ]
+Ejercicios de  la relacion 4
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 4.2
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Dibuja, en un mismo gráfico, la elipse de semieje horizontal a = 3 y de semieje
+vertical b = 5 y la bisectriz del primer cuadrante. Calcula los puntos donde se cortan ambas curvas.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    ellipse(0,0,3,5,0,360),
+    nticks = 5,
+    head_length = 0.03, head_angle=20,
+    color=cyan, 
+    vector([0,0],[3,5]),
+    xrange=[-6,6],
+    yrange=[-8,8]
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 4.3
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Consideremos la circunferencia de centro (0; 0) y radio 2. Dibújala. Ahora consideremos
+un rectángulo centrado en el origen e inscrito en ella. Determina el rectángulo así construido
+cuya área sea 1.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    implicit(x**2+y**2=4,x,-7,7,y,-4,4),
+    transparent=false,
+
+    fill_color=red,
+
+    line_type=solid,
+
+    line_width=2,
+
+    rectangle([-0.5,0.5],[0.5,-0.5])
+
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 4.4
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Representa gráficamente y determina los puntos de corte de las siguientes curvas:
+b) la hipérbola equilátera y la circunferencia de centro (..1; 1) y radio 1;
+
+   [wxMaxima: comment end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

@@ -1,0 +1,226 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: title   start ]
+ecuaciones
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+solve(x**3+3*x+1=0,x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+b indica cual es el exponente
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sqrt(2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+float(%),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bfloat(%),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fpprec : 3;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bfloat(sqrt(2)),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+exp(7);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+1/2+1/3;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+numer: false;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sqrt(2)+3;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sqrt(2.0)+3b2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fpprec: 23;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bfloat(0.1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+1/3;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bfloat(1/3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fpprec: 100;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bfloat(1/3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a: 123456.78;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+b: 123456.79;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+(a-b)*(a+b);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+(a**2-b**2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a: 12345678;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+b: 12345679;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+((a-b)*(a+b))/10000,numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+(a**2-b**2)/10000,numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+(x-a)**2+(y-b)**2=R**2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+solve(x**6+x+1=0,x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+to_poly_solve(x**6+x+1=0,x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+allroots(x**6+x+1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+realroots(x**6+x+1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fpprec:20;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bfallroots(x**6+x+1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+algsys([x**6+x+1],[x]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+realonly;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+realonly:true;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+exp(x)+atan(x)+x=2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d(exp(x)+atan(x)+x-2, [x,-3,3]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+find_root (exp(x)+atan(x)+x-2,x,0,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    implicit(x**2+y**2=1,x,-1,1,y,-1,1),
+    ellipse(2,3,3,3,0,360)
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    explicit(sqrt(1-x**2),x,-1,1),
+    explicit(-sqrt(1-x**2),x,-1,1)
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+to_poly_solve(sqrt(x+1)=x**3+1,x);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$
