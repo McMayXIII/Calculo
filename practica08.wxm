@@ -1,0 +1,1716 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: section start ]
+Ejercicio 8.1
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado a
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=cos(x)^5;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+PRIMITIVA:integrate(f(x),x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado b
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=1/(1+x^4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+PRIMITIVA:integrate(f(x),x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado c
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=sqrt(1-x^2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+PRIMITIVA:integrate(f(x),x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.2
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=cos(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+for i:1 thru 20 do(
+    P:integrate(taylor(f(x),x,0,i),x,0,2*%pi),
+    print("Grado", i, ": ", P))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.3 
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(t):=sin(t);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g(x):=sqrt(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+h(x):=x^2+1;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+F(x):=integrate(f(t),t,g(x),h(x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Según el teorema fundamental del cálculo, la derivada de F(x) es:
+F'(x) = f(h(x))*h'(x) - f(g(x))*g'(x)
+Calculamos, por tanto, las derivada de h(x) y g(x)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(dg(x),diff(g(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(dh(x),diff(h(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La derivada de F(x) será por tanto:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(dF(x),f(h(x))*dh(x) - f(g(x))*dg(x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.4
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+h(x):=(2*x-7)^2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(t):=t^3-2*t;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+F(x):=integrate(f(t),t,0,h(x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Aplicando el teorema fundamental del cálculo, sabemos que la derivada de esa función es:
+F'(x) = f(h(x)) * h'(x)
+Por tanto, definimos la primera derivada y calculamos a partir de ahí sus extremos relativos:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(dF(x),f(h(x))*diff(h(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+soluciones:map(rhs,solve(dF(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Cogemos las soluciones reales:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+SOL1:soluciones[3];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+SOL2:soluciones[4];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+SOL3:soluciones[5];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Calculamos la segunda derivada
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(d2F(x),diff(dF(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Evaluamos los valores en los que se anula la primera derivada para ver
+cuáles son extremos relativos:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+d2F(SOL1),numer;
+d2F(SOL2),numer;
+d2F(SOL3),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+draw2d(
+explicit(F(x),x,-10000000,10000000));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.5
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado a
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=x*%e^(-x^2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Calculamos dónde se alcanza el máximo:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(df(x),diff(f(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+soluciones:map(rhs,solve(df(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+SOL1:soluciones[1];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+SOL2:soluciones[2];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+SOL2,numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(d2f(x),diff(df(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+d2f(SOL1),numer;
+d2f(SOL2),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El máximo se alcanza en x = SOL2 = 1/sqrt(2)
+Veamos gráficamente qué área debemos calcular:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+draw2d(
+    filled_func=0, fill_color=grey,
+    explicit(f(x),x,0,SOL2),
+    filled_func=false,
+    
+    color=red,
+    explicit(f(x),x,-10,10),
+    color=blue,
+    implicit(x=0,x,-1,1,y,-10,10),
+    implicit(x=SOL2,x,0,1,y,-10,10),
+    xaxis=true, xrange=[-SOL2-1,SOL2+1], yrange=[-f(SOL2)-0.5,f(SOL2)+0.5]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:integrate(f(x),x,0,SOL2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado b
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=x^3-x^2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+solve(f(x),x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    filled_func=0, fill_color=grey,
+    explicit(f(x),x,0,1),
+    filled_func=false,
+    color=red,
+    explicit(f(x),x,-1,2),
+    color=blue,
+    implicit(x=0,x,-1,1,y,-2,2),
+    implicit(x=1,x,0,2,y,-2,2),
+    explicit(0,x,-1,2),
+    xrange=[-0.5,1.5], yrange=[-1,1]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:integrate(-f(x),x,0,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado c
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=tan(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+solve(f(x),x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+to_poly_solve(f(x),x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    filled_func=0, fill_color=grey,
+    explicit(f(x),x,0,%pi/3),
+    filled_func=false,
+    color=red,
+    explicit(f(x),x,-10,10),
+    color=blue,
+    implicit(x=%pi/3,x,-10,10,y,-10,10),
+    xaxis=true,yaxis=true,
+    xrange=[%pi/3-3,%pi/3+3], yrange=[-5,5]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:integrate(f(x),x,0,%pi/3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=1/(1+x^2)^2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    filled_func=0, fill_color=light_blue,
+    explicit(f(x),x,0,1),
+    filled_func=false,
+    
+    color=red,
+    explicit(f(x),x,-10,10),
+    color=blue,
+    implicit(x=1,x,0,2,y,-10,10),
+    explicit(0,x,-10,10),
+    implicit(x=0,x,-1,1,y,-10,10),
+    xrange=[-1,2], yrange=[-2,3]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:integrate(f(x),x,0,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado e
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=abs(x)-x*sin(x)*%e^x;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    explicit(f(x),x,-10,10),
+    implicit(x^2+y^2=1,x,-1,1,y,-1,1),
+    xrange=[-1.8,1.8], yrange=[-1.1,1.1], xaxis=true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para calcular el área superior debemos trocear las funciones para determinarlo con facilidad:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+SemiCircunfSup(x):=sqrt(1-x^2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+SemiCircunfInf(x):=-sqrt(1-x^2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+P1:find_root(SemiCircunfSup(x)-f(x),x,-1,-0.5);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+P2:find_root(SemiCircunfInf(x)-f(x),x,0.5,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Dibujando todo lo que hemos calculado en una sóla gráfica, podemos ver las dos
+áreas que tenemos que sumar para averiguar el área superior:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    filled_func=f(x), fill_color=grey,
+    explicit(SemiCircunfSup(x),x,P1,P2),
+    filled_func=SemiCircunfInf(x), fill_color=light_blue,
+    explicit(SemiCircunfSup(x),x,P2,1),
+    filled_func=false,
+    
+    color=red,
+    explicit(SemiCircunfSup(x),x,-1,1),
+    color=blue,
+    explicit(SemiCircunfInf(x),x,-1,1),
+    color=dark_green,
+    explicit(f(x),x,-10,10),
+    points([[P1,f(P1)],[P2,f(P2)]]),
+    xrange=[-1.8,1.8], yrange=[-1.1,1.1], xaxis=true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA_SUP:integrate(SemiCircunfSup(x)-f(x),x,P1,P2)+
+         integrate(SemiCircunfSup(x)-SemiCircunfInf(x),x,P2,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA_SUP,numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Como sabemos que el área del círculo  es:
+A = %pi * r^2
+Como el radio de nuestro círculo es 1, su área será: 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA_CIRCULO:%pi;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para calcular el área inferior sólo debemos restar AREA_CIRCULO-AREA_SUP
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA_INF:AREA_CIRCULO-AREA_SUP,numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado d
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.6
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado a
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=-x^2-2*x;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g(x):=x^2-4;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    filled_func=g(x), fill_color=grey,
+    explicit(f(x),x,-3,1),
+    filled_func=false,
+    color = blue,
+    key="g(x) = x^2-4",
+    explicit(g(x),x,-4,2),
+    color = red,
+    key="f(x) = x^2-2*x",
+    explicit(f(x),x,-4,2)
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:quad_qags(abs(f(x)-g(x)),x,-3,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado b
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+y^2 = x
+x^2+y^2 = 8
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color = blue,
+    key="y^2 = x",
+    implicit(y^2=x,x,0,5,y,-4,4),
+    color = red,
+    key="x^2+y^2 = 8",
+    implicit(x^2+y^2=8,x,-3,5,y,-4,4),
+    xaxis=true
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Puntos de corte entre las 2 gráficas
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+soluciones:solve([y^2=x,x^2+y^2=8],[x,y]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+CorteGraficas1:map(rhs,soluciones[1]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+CorteGraficas2:map(rhs,soluciones[2]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Puntos de corte de cada una de las gráficas con el eje x
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+CorteRaizEjeX:map(rhs,solve([y^2=x,y=0],[x,y])[1]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+solve([x^2+y^2=8,y=0],[x,y]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Cojo el positivo:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+CorteCircunfEjeX:map(rhs,solve([x^2+y^2=8,y=0],[x,y])[2]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El área será entonces 2 veces el área comprendida entre las 2 gráficas y el eje X.
+Para esto, antes, ponemos todo en función de Y:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=sqrt(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g(x):=sqrt(8-x^2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Necesitamos 2 integrales: La primera, que calcula el área entre la gráfica de la raíz y el eje X desde 0 hasta donde se cortan las gráficas
+y la segunda, que calcula el área entre la gráfica de la circunferencia y el eje X desde el punto de corte de las gráficas hasta donde ésta corta al eje X.
+El doble de su suma será el área que buscamos
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+mitad:integrate(f(x),x,0,CorteGraficas2[1])+integrate(g(x),x,CorteGraficas2[1],CorteCircunfEjeX[1]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:2*mitad;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA,numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado c
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(y):=12*y^2 - 12*y^3;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g(y):=2*y^2 - 2*y;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color = red,
+    key="f(y) = 12*y^2 - 12*y^3",
+explicit(f(y),y,-10,10),
+    color = blue,
+    key="g(y) = 2*y^2 - 2*y",
+    explicit(2*y^2 - 2*y,y,-10,10),
+    xrange=[-1,2],yrange=[-3,3],
+    xaxis=true,yaxis=true,
+    xlabel="Eje Y", ylabel="Eje X");
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Parece que tenemos 3 puntos de corte. Averiguémoslo:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+puntos:solve([x = 12*y^2 - 12*y^3,x = 2*y^2 - 2*y],[x,y]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+P1:map(rhs,puntos[1]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+P3:map(rhs,puntos[2]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+P2:map(rhs,puntos[3]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:quad_qags(abs(f(y)-g(y)),y,P1[2],P3[2]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado d
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=sec(x)^2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g(x):=tan(x)^2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    filled_func=g(x), fill_color=grey,
+    explicit(f(x),x,-%pi/4,%pi/4),
+    filled_func=false,
+    color=red,
+    key="f(x) = sec(x)^2",
+    explicit(f(x),x,-10,10),
+    color=blue,
+    key="g(x) = tan(x)^2;",
+    explicit(g(x),x,-10,10),
+    xrange=[-1,1],
+    yrange=[-0.1,3]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:quad_qags(abs(f(x)-g(x)),x,-%pi/4,%pi/4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado e
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+(y-x)^2 = x-3
+x = 7
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Vemos los puntos de corte
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+El área que debemos calcular es esta:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color=red,
+    implicit((y-x)^2=x-3,x,2,10,y,2,10),
+    color=blue,
+    implicit(x=7,x,2,10,y,2,10));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Atendiendo a la ecuación y a la gráfica, vemos que donde se produce el cambio de
+la raíz positiva a la negativa es en x=3. Lo comprobamos:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=sqrt(x-3)+x;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g(x):=-sqrt(x-3)+x;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is (f(3)=g(3));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    filled_func=g(x), fill_color=grey,
+    explicit(f(x),x,3,7),
+    filled_func=false,
+    color=red,
+    key="f(x)",
+    explicit(f(x),x,3,10),
+    color=blue,
+    key="g(x)",
+    explicit(g(x),x,3,10),
+    xrange=[2,10], yrange=[2,10],
+    color=green,
+    key="x = 7",
+    implicit(x=7,x,2,10,y,2,10));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para calcular ese área deberemos calcular el área entre f(x) y g(x) desde 3 hasta 7
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:integrate(f(x)-g(x),x,3,7);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado f
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=x^4 + x^3 + 16*x -4;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g(x):=x^4 + 6*x^2 + 8*x -4;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Puntos de corte:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+puntos:solve([y = x^4 + x^3 + 16*x -4,y = x^4 + 6*x^2 + 8*x -4],[x,y]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+P2:map(rhs,puntos[1]);
+P3:map(rhs,puntos[2]);
+P1:map(rhs,puntos[3]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    filled_func=g(x), fill_color=grey,
+    explicit(f(x),x,0,4),
+    filled_func=false,
+    points([P1,P2,P3]),
+    color=blue,
+    key="f(x)",
+    explicit(f(x),x,-10,10),
+    color=red,
+    key="g(x)",
+    explicit(g(x),x,-10,10),
+    xrange=[-1,5], yrange=[-10,450]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:quad_qags(abs(f(x)-g(x)),x,P1[1],P3[1]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado g
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=x*%e^(-x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g(x):=x^2*%e^(-x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Puntos de corte:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+puntos:solve([y = x*%e^(-x),y = x^2*%e^(-x)],[x,y]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+P2:map(rhs,puntos[1]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+P1:map(rhs,puntos[2]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color=blue,
+    explicit(f(x),x,0,10),
+    color=red,
+    explicit(f(x),x,0,10),
+    xrange=[P1[1],P2[1]+0.1], yrange=[P1[2]-0.1,P2[2]+0.1]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:quad_qags(abs(f(x)-g(x)),x,P1[1],P2[1]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.7
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado a
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(t):=t-sin(t);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g(t):=1-cos(t);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d([parametric,f(t),g(t),[t,0,2*%pi],[nticks,90]]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Usamos la fórmula para calcular longitudes de curvas entre a y b:
+LONGITUD = integral entre a y b de (sqrt(f'(x)^2+g'(x)^2))
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(df(t),diff(f(t),t));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(dg(t),diff(g(t),t));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+quad_qags(sqrt(df(t)^2+dg(t)^2),t,0,2*%pi);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+LONGITUD:%[1];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado b
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=x^2+4;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color=red,
+    explicit(f(x),x,-1,4),
+    color=blue, line_width=2,
+    explicit(f(x),x,0,3),
+    color=black, line_width=1,
+    implicit(x=0,x,-1,1,y,0,40),
+    implicit(x=3,x,2,4,y,0,40));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(df(x),diff(f(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+LONGITUD:integrate(sqrt(1+df(x)^2),x,0,3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+LONGITUD,numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.8
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Será el doble de la longitud de la semicircunferencia de radio R:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x,R):=sqrt(R^2-x^2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Usamos la fórmula para calcular longitudes de curvas:
+integral entre a y b de (sqrt(1+f'(x)^2))
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(df(x,R),diff(f(x,R),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+LONGITUD:2*integrate(sqrt(1+df(x,R)^2),x,-R,R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.9
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ejercicio 8.9: Sea f (x) = cos(x) + e^x y P su polinomio de orden 5 centrado en el origen. ¿Cuál
+es la diferencia entre las longitudes de las gráficas de f y de P en el intervalo [0, 3]?
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill (all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):= cos(x)+%e^x;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(df(x),diff(f(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Calculamos la longitud de la curva entre 0 y 3
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+longitud_funcion:romberg(sqrt(1+df(x)^2),x,0,3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(t(x),taylor(f(x),x,0,5));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(dt(x),diff(t(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+longitud_polinomio:romberg(sqrt(1+dt(x)^2),x,0,3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+DIFERENCIA:longitud_funcion-longitud_polinomio;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.10
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado a
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=sec(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ VOLUMEN1:%pi*integrate(f(x)^2,x,0,%pi/3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado b
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g(x):=sqrt(cos(x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+VOLUMEN2:%pi*integrate(g(x)^2,x,0,%pi/2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado c
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+h(x):=9-x^2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    explicit(h(x),x,-4,4),
+    xaxis=true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+solve(h(x),x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+VOLUMEN3:%pi*integrate(h(x)^2,x,-3,3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado d
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+s(x):=%e^x;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+VOLUMEN4:%pi*integrate(s(x)^2,x,0,log(3));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.11
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado a
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=1/x;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+VOLUMEN1:%pi*integrate(f(x)^2,x,1,3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado b
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=1/(1+x^2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+VOLUMEN2:%pi*integrate(f(x)^2,x,0,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado c
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=%e^x^2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+VOLUMEN3:%pi*integrate(f(x)^2,x,1,sqrt(3));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Lo calculamos con la orden 'romberg' en vez de con 'integrate'
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+VOLUMEN3:%pi*romberg(f(x)^2,x,1,sqrt(3));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.12
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Aitor
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ejercicio 8.12.
+a) Calcular la superficie de una esfera de radio R.
+b) Calcular la superficie de la figura que se obtiene al girar la función y = tan(x); x 2 [0;  =4]
+alrededor del eje OX.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+a)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ñ(r):= 4*%pi*r^2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+integrate(ñ(r),r);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+b)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+if numer#false then numer:false else numer:true;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+integrate(tan(x)*sqrt(1+diff(tan(x),x)^2),x,0,%pi/4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+m(x):=tan(x)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+plot2d(m(x),[x,0,4]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+j(x):=2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+integrate(m(x)-j(x),x,0,4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+-log(cos(4))-8;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.13
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado a
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    implicit((x-2)^2+y^2=3^2,x,-1,5,y,-3,3),
+    xrange=[-5,9], yrange=[-4,4], xaxis=true, yaxis=true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Nos quedamos sólo con la semicircunferencia superior:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=sqrt(3^2-(x-2)^2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El volumen total será 2 veces el volumen de esa curva girada alrededor del eje OY:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+VOLUMEN:2*(2*%pi*integrate(x*f(x),x,-1,5));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado b
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=x^2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    filled_func=f(x), fill_color=grey,
+    explicit(sqrt(x),x,0,1),
+    filled_func=false,
+    implicit(y^2=x,x,-2,2,y,-2,2),
+    explicit(f(x),x,-2,2),
+    xaxis=true, yaxis=true, yrange=[-2,2]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g(x):=sqrt(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+VOLUMEN:2*%pi*integrate(x*g(x)-x*f(x),x,0,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.14
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(f(x),x^5+4*x^3+2*x^2+8);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(df(x),diff(f(x)));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+realonly:true;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+soluciones:map(rhs,solve(df(x),x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Cogemos sólo las soluciones reales
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+P1:soluciones[3];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+P2:soluciones[4];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(d2f(x),diff(f(x),x,2));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+d2f(P1),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+d2f(P2),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Por lo tanto, se alcanza un máximo en P1 y un mínimo en P2
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color=red, key="Funcion",
+    explicit(f(x),x,-0.5,0.2),
+    color=dark_green, key="Extremos relativos",
+    points([[P1,f(P1)],[P2,f(P2)]])
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+para calcular el volumen tenemos que hacer %pi*(integrate(f(x)^2))
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+VOLUMEN:%pi*integrate(f(x)^2,x,P1,P2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+VOLUMEN,numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8.15
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado a
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(R,x):=sqrt(R^2-x^2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:2*%pi*integrate(f(R,x)*sqrt(1+diff(f(R,x),x)^2),x,-R,R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado b
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+y^2 = 4*x
+x = 5
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=sqrt(4*x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    implicit(y^2=4*x,x,0,10,y,-10,10),
+    implicit(x=5,x,0,10,y,-10,10));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El área será el doble del resultado de obtener el área producida por la raíz positiva,
+integrándola desde 0 hasta 5.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:2*(2*%pi*integrate(f(x)*sqrt(1+diff(f(x),x)^2),x,0,5));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado c
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+Área lateral de un cono de radio R y altura h
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El cono puede obtenerse como cuerpo de revolución haciendo girar una recta sobre el eje X.
+Así, esta recta debe pasa por los puntos (h,0) y (0,R), por lo que la ecuación de la recta,
+usando esta forma [ y-y1 = m (x-x1) ], es:
+y - 0 = -R/h (x - h)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(R,h,x):=-R/h * (x - h);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Así, el cono de radio 5 y altura 10 se obtiene girando la siguiente recta en torno al eje X.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    explicit(f(5,10,x),x,-5,15),
+    points([[0,5],[10,0]]),
+    xaxis = true, yaxis = true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Por lo tanto, para calcular el área del cono de radio R y altura h sólo debemos aplicar la
+fórmula para las áreas de superficie de revolución siendo la función que giramos: f(R,h,x)
+y el intervalo en el que calculamos la integral: [0,h]
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+AREA:2*%pi*integrate(f(R,h,x)*sqrt(1+diff(f(R,h,x),x)^2),x,0,h);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: page break    ] */
+
+/* [wxMaxima: section start ]
+Ejercicio 8.16
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado a
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=1/x^2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+integrate(f(x),x,1,inf);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+draw2d(
+    explicit(f(x),x,-20,20),
+    yrange=[0,10]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado b
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fghfhg
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Apartado c
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+asdas
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$
