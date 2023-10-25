@@ -1,0 +1,148 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: title   start ]
+Ejercicio practica 02
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 2.2
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Compara las gráficas de las funciones cos(x) y cos(-x). ¿A qué conclusión llegas
+
+sobre la paridad o imparidad de la función coseno? Haz lo mismo con las funciones sen(x) y
+
+sen(x).
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color=blue,
+    explicit (cos(x),x,-5,0),
+
+    color=red,
+    explicit (cos(-x),x,0,5)
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+cos(X) y cos(-x) son pares lo que quiere decir que son iguales
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 2.3
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Representa las funciones logaritmo neperiano, exponencial y f (x) = x**2 con
+
+colores diferentes. Compara el crecimiento de estas funciones cerca de cero y lejos de cero. ¿Qué
+
+ocurre si la base de la exponencial y del logaritmo es menor que 1?
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d([log(x),exp(x),x**2], [x,-5,5], [y,-3,3])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Lo que observamos es que el crecimiento de la funcion exponencian crece mucho mas que las otras
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 2.4
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Dibuja las gráficas de las funciones coseno hiperbólico, seno hiperbólico, argumento
+
+seno hiperbólico y argumento coseno hiperbólico. ¿Alguna de ellas es par o impar? ¿Son
+
+positivas?
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 2.5
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Representa la curva cos(x)**2 - x sen(x)**2 en el intervalo [-%pi; %pi] y sobre ella 5
+
+puntos cuyo tamaño y color debes elegir tú. ¿Sabrías hacer lo mismo con 8 puntos elegidos aleatoriamente?
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+makelist(random(6.28)- 3.14, n, 1, 8);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=cos(x)**2-x*sin(x)**2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d(f(x),[x,-%pi,%pi]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load (draw);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+listax:makelist(random(6.28)-3.14,n,1,8);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(listax);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+puntos:makelist([listax[i],f(listax[i])],i,1,8);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color=blue,
+    explicit(f(x),x,-%pi,%pi),
+    point_type=2,
+    points(puntos)
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 2.7
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color=blue,
+    explicit (cos(x),x,-5,5)
+);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$
